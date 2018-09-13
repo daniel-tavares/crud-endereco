@@ -1,9 +1,9 @@
 package br.endereco.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 
 import br.endereco.model.Endereco;
 
-public interface EnderecoRepository implements Cru{
+public interface EnderecoRepository extends CrudRepository<Endereco, Long>{
 
 }

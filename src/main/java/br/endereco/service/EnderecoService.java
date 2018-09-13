@@ -1,36 +1,34 @@
 package br.endereco.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.endereco.model.Endereco;
-import br.endereco.repository.EnderecoRepositoryImpl;
+import br.endereco.repository.EnderecoRepository;
 
 
 @Service
 public class EnderecoService {
 
 	@Autowired
-	EnderecoRepositoryImpl enderecoRepository;
+	EnderecoRepository enderecoRepository;
 	
 	
-	public void save(Endereco endereco){
-	   
+	public Endereco save(Endereco endereco){
+		return enderecoRepository.save(endereco);
 	}
-	
-	
-	public void update(Endereco endereco){
-	
+
+	public void deleteById(Long id){
+		enderecoRepository.deleteById(id);
 	}
-	
-	public void delete(Long id){
-	}
-	
 	
 	public List<Endereco> findAll(){
-		return null;
+		List<Endereco> listaEndereco=new ArrayList<>();
+		enderecoRepository.findAll().forEach(listaEndereco::add);
+		return listaEndereco; 
 	}
 	
 }

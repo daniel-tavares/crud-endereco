@@ -4,6 +4,9 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 
@@ -13,28 +16,15 @@ public class Endereco implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	@Column(name="id", nullable=false)
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
-	
-	@Column(name="rua", nullable=false)
 	private String rua;
-	
-	@Column(name="numero", nullable=false)
 	private String numero;
-	
-	@Column(name="cep", nullable=false)
 	private String cep;
-	
-	@Column(name="cidade", nullable=false)
 	private String cidade;
-	
-	@Column(name="estado", nullable=false)
 	private String estado;
-	
-	@Column(name="bairro", nullable=true)
 	private String bairro;
-	
-	@Column(name="id", nullable=true)
 	private String complemento;
 	
 	

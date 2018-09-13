@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class EnderecoApplication {
+public class ApplicationInicializer {
 
 	public static void main(String[] args) {
-		SpringApplication.run(EnderecoApplication.class, args);
+		SpringApplication.run(ApplicationInicializer.class, args);
 	}
 }

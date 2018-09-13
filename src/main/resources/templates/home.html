@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/> 
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<meta name="description" content=""/>
+	<meta http-equiv="Cache-Control" content="no-cache"/> 
+	<meta http-equiv="Pragma" content="no-cache"/>  
+	<meta Http-Equiv="Expires" content="0"/>  
+	 <script th:href="@{/static/js/script.js}"></script>
+    
+    <title>Portal Banking Caixa</title>
+</head>
+<body>
+
+<a type="button" class="btn btn-primary" th:href="@{/enderecos/form}" >Novo Endereco</a>
+
+
+<div class="table-responsive">
+		
+		<table class="table table-striped table-hover table-sm">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Rua</th>
+					<th>Numero</th>
+					<th>Cep</th>
+					<th>Cidade</th>
+					<th>Estado</th>
+					<th>Bairro</th>
+					<th>Complemento</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="endereco : ${enderecos}">
+					<td th:text="${endereco.id}"></td>
+					<td th:text="${endereco.rua}"></td>
+					<td th:text="${{endereco.numero}}"></td>
+					<td th:text="${endereco.cep}"></td>
+					<td th:text="${endereco.cidade}"></td>
+					<td th:text="${endereco.estado}"></td>
+					<td th:text="${endereco.bairro}"></td>
+					<td th:text="${endereco.complemento}"></td>
+			</tbody>
+	</table>
+</div>
+
+</body>
+</html>
