@@ -1,51 +1,87 @@
 <!DOCTYPE html>
+
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/> 
-	<meta name="viewport" content="width=device-width, initial-scale=1"/>
-	<meta name="description" content=""/>
-	<meta http-equiv="Cache-Control" content="no-cache"/> 
-	<meta http-equiv="Pragma" content="no-cache"/>  
-	<meta Http-Equiv="Expires" content="0"/>  
-	 <script th:href="@{/static/js/script.js}"></script>
-    
-    <title>Portal Banking Caixa</title>
-</head>
+<head th:replace="fragments/headTag :: headTag"></head>
+
 <body>
-
-<a type="button" class="btn btn-primary" th:href="@{/enderecos/form}" >Novo Endereco</a>
-
-
-<div class="table-responsive">
-		
-		<table class="table table-striped table-hover table-sm">
-			<thead>
-				<tr>
-					<th>#</th>
-					<th>Rua</th>
-					<th>Numero</th>
-					<th>Cep</th>
-					<th>Cidade</th>
-					<th>Estado</th>
-					<th>Bairro</th>
-					<th>Complemento</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="endereco : ${enderecos}">
-					<td th:text="${endereco.id}"></td>
-					<td th:text="${endereco.rua}"></td>
-					<td th:text="${{endereco.numero}}"></td>
-					<td th:text="${endereco.cep}"></td>
-					<td th:text="${endereco.cidade}"></td>
-					<td th:text="${endereco.estado}"></td>
-					<td th:text="${endereco.bairro}"></td>
-					<td th:text="${endereco.complemento}"></td>
-			</tbody>
-	</table>
-</div>
-
+	<div class="container">
+	  	<section class="box-form-endereco">
+	       <h3>Cadastro de Endereços</h3>
+	       
+	       <div id="resultado"></div>
+	 	   <div id="#loading"></div> 
+	  
+	       <form id="saveUpdateForm">
+	    		 <div class="form-row">
+			        <div class="form-group col-md-4">
+			           <label for="rua">Rua</label>
+			           <input type="text" class="form-control" id="rua" name="rua"/>
+			        </div>
+			        <div class="form-group col-md-4">
+			           <label for="numero">Numero</label>
+			           <input type="text" class="form-control" id="numero" name="numero"/>
+			        </div>
+	       
+			        <div class="form-group col-md-4">
+			           <label for="cep">Cep</label>
+			           <input type="text" class="form-control" id="cep" name="cep"/>
+			        </div>
+		         </div>
+		    
+			     <div class="form-row">
+			       <div class="form-group col-md-4">
+			           <label for="cidade">Cidade</label>
+			           <input type="text" class="form-control" id="cidade" name="cidade"/>
+			       </div>
+			       
+			       <div class="form-group col-md-4">
+			           <label for="estado">Estado</label>
+			           <input type="text" class="form-control" id="estado" placeholder="Estado" autofocus="autofocus" name="estado"/>
+			       </div>
+			       
+			       <div class="form-group col-md-4">
+			           <label for="bairro">Bairro</label>
+			           <input type="text" class="form-control" id="bairro" placeholder="Bairro" autofocus="autofocus" name="bairro"/>
+			       </div>
+		        </div>
+		       	<div class="form-row">
+			        <div class="form-group col-md-12">
+			           <label for="complemento">Complemento</label>
+			           <input type="text" class="form-control" id="complemento" placeholder="Complemento" autofocus="autofocus" name="complemento"/>
+			       </div>       
+		     	</div>
+		      	<input type="hidden" id="id" name="id"/>
+			  	<div class="form-row">
+			  		<button  type="submit" class="btn-save-update btn btn-primary btn-sm"></button>
+			  		<button  class="btn-novo btn btn-primary btn-sm"></button>
+			  	</div>
+	  		</form>
+	  </section>
+	 
+	  
+	  <section class="listagem-endereco" >
+	    <h2>Enderecos cadastrados</h2> 
+	    
+			<div class="table-responsive">
+				<table id="tableEndereco" class="table table-striped table-hover table-sm">
+					<thead>
+						<tr>
+							<th>id</th>
+							<th>Rua</th>
+							<th>Numero</th>
+							<th>Cep</th>
+							<th>Cidade</th>
+							<th>Estado</th>
+							<th>Bairro</th>
+							<th>Complemento</th>
+						    <th>Acoes</th>
+						</tr>
+					</thead>
+		    	</table>
+			</div>
+	  </section>
+	</div>
+	<div th:include="fragments/bodyFooter :: bodyFooter" th:remove="tag"></div>   
 </body>
-</html>
+</html>		

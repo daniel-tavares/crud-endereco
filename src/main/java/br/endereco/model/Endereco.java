@@ -2,12 +2,13 @@ package br.endereco.model;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 
 @Entity
@@ -19,11 +20,22 @@ public class Endereco implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
+	
+	@NotEmpty(message = "Rua é um campo brigatório")
 	private String rua;
+	
+	@NotEmpty(message = "NUmero é um campo brigatório")
 	private String numero;
+	
+	@NotEmpty(message = "Cep é um campo brigatório")
 	private String cep;
+	
+	@NotEmpty(message = "Cidade é um campo brigatório")
 	private String cidade;
+	
+	@NotEmpty(message = "Estado é um campo brigatório")
 	private String estado;
+
 	private String bairro;
 	private String complemento;
 	
