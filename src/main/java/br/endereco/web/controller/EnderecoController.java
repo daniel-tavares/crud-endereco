@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -19,38 +19,47 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.endereco.model.Endereco;
-import br.endereco.service.EnderecoService;
+import br.endereco.web.validator.EnderecoValidator;
 
 @Controller
 @RequestMapping("/enderecos")
-public class EnderecoController {
+public class EnderecoController extends EnderecoValidator {
 
-	@Autowired
-	EnderecoService enderecoService;
-	
 	
 	@PostMapping(produces="application/json", consumes="application/json")
 	public @ResponseBody ResponseEntity<?> save(@Valid @RequestBody Endereco endereco, BindingResult bindind){
-		
 		if(bindind.hasErrors())
-			return ResponseEntity.badRequest().body(bindind.getAllErrors().get(0));
-		
-		return new ResponseEntity<>(enderecoService.save(endereco), HttpStatus.OK);
+			return ResponseEntity.badRequest().body(bindind.getAllErrors().get(0).getDefaultMessage());
+		return new ResponseEntity<>(enderecoService.save(endereco), HttpStatus.CREATED);
 	}
 	
 	
 	@PutMapping(produces="application/json", consumes="application/json")
-	public  @ResponseBody ResponseEntity<Endereco>  update(@RequestBody Endereco endereco){
-		return new ResponseEntity<>(enderecoService.save(endereco),HttpStatus.OK);
+	public  @ResponseBody ResponseEntity<?>  update(@RequestBody Endereco endereco){
+		String mensagemErro=validarDadosRequisicao(endereco);
+		if(!StringUtils.isEmpty(mensagemErro))
+			return ResponseEntity.badRequest().body(mensagemErro);
+		
+		return ResponseEntity.ok().body(enderecoService.save(endereco));
 	}
 	
 	
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> delete(@PathVariable("id") Long id){
+		String mensagemErro=validarDadosRequisicao(id);
+		if(!StringUtils.isEmpty(mensagemErro))
+			return ResponseEntity.badRequest().body(mensagemErro);
+		
 		enderecoService.deleteById(id);
 		return ResponseEntity.ok().build();
 	} 
+	
+	
+	@GetMapping("/{id}")
+	public @ResponseBody ResponseEntity<?> findById(@PathVariable("id") Long id){
+       	return new ResponseEntity<>(enderecoService.findById(id), HttpStatus.OK);
+	}
 	
 	
 	@GetMapping

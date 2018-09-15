@@ -2,6 +2,7 @@ package br.endereco.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,10 @@ public class EnderecoService {
 
 	public void deleteById(Long id){
 		enderecoRepository.deleteById(id);
+	}
+	
+	public Optional<Endereco> findById(Long id){
+		return enderecoRepository.findById(id);
 	}
 	
 	public List<Endereco> findAll(){

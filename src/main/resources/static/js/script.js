@@ -4,7 +4,8 @@ $(function() {
 	iniciarComponentes();
 	
 	
-	 $(".btn-novo").click(function(){
+	 $(".btn-novo").click(function(event){
+		 event.preventDefault();
 		 $(".btn-novo").css("display","none");
 		 $(".btn-save-update").text("Salvar");
 		 $('input#id').val("");
@@ -53,9 +54,10 @@ $(function() {
 			$("#resultado").html("<div class=\"alert alert-primary\" role=\"alert\">Registro salvo com sucesso</div>");
 			carregarEnderecos();
 		}).fail(function(jqXHR, textStatus, msg) {
-			$("#resultado").html("<div class=\"alert alert-danger\" role=\"alert\">Erro ao salvar endereco:"+jqXHR.responseJSON.defaultMessage+"</div>");
+			$("#resultado").html("<div class=\"alert alert-danger\" role=\"alert\">Erro ao salvar endereco:"+jqXHR.responseJSON+"</div>");
 		});
 	}
+	
 	
 	function update(data){
 		$.ajax({
@@ -105,8 +107,6 @@ $(function() {
 		  }   
 	}
 	
-	
-
 	function carregarEnderecos(){	
 
 		var columns = [
@@ -143,6 +143,7 @@ $(function() {
 	function fnDataTable(tableId, urlRequisicao, columns, columnDefs, zeroRecords, emptyTable, history) {
 	    $(tableId).DataTable({
 	    	destroy: true,
+	    	"searching": false,
 	    	aaSorting: [],
 	        bProcessing: true,
 	        ajax: {

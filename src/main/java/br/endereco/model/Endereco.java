@@ -33,7 +33,7 @@ public class Endereco implements Serializable{
 	@NotEmpty(message = "Cidade é um campo brigatório")
 	private String cidade;
 	
-	@NotEmpty(message = "Estado é um campo brigatório")
+    @NotEmpty(message = "Estado é um campo brigatório")
 	private String estado;
 
 	private String bairro;
