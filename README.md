@@ -10,7 +10,7 @@
  
 
 
-### Quando você digita a URL de um site (http://www.totvs.com.br) no browser e pressiona ENTER, explique da forma que preferir, o que ocorre nesse processo do protocolo HTTP entre o CLIENT e o SERVER. 
+### Quando você digita a URL de um site no browser e pressiona ENTER, explique da forma que preferir, o que ocorre nesse processo do protocolo HTTP entre o CLIENT e o SERVER. 
 
   Ao digitar o link no navegador e pressionar enter, o navegador realizará uma requisição GET ao servidor correspondente a url informada. 
   O servidor recebe a requisição do navegador e verifica se é possivel ou não atende-la, caso sim, o servidor encapsulará a resposta 
