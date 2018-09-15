@@ -7,6 +7,7 @@
  
 ### Projeto
  - Foi criada uma aplicação SpringMvc(Requisiçes Ajax via javascript consomem servicos criado no controller).
+ - Foi criado testes unitários para os serviços criados.
  
 
 
